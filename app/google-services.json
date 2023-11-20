@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "268513522943",
+    "project_id": "druh-87adb",
+    "storage_bucket": "druh-87adb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268513522943:android:5104de79dca42d20fc48ca",
+        "android_client_info": {
+          "package_name": "com.jason.druh"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9yWI-mQknYtE2hMmQOOj23UbT_boeExQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
