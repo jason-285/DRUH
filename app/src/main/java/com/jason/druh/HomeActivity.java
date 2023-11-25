@@ -31,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     List<Movie> movies;
     MovieAdapter movieAdapter;
 
+    Button button;
     RecyclerView moviesRV;
 
     Bundle bundle;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        button = findViewById(R.id.button);
         moviesRV = findViewById(R.id.moviesRV);
 
         prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit();
@@ -50,9 +52,19 @@ public class HomeActivity extends AppCompatActivity {
         email = bundle.get("email").toString();
         moviesRV.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
-
         autoAuth();
         showMovies();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prefs.clear();
+                prefs.apply();
+                FirebaseAuth.getInstance().signOut();
+                Intent authIntent = new Intent(HomeActivity.this, AuthActivity.class);
+                startActivity(authIntent);
+            }
+        });
 
     }
 

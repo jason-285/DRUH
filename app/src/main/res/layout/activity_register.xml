@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthActivity">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
-        android:id="@+id/authLayout"
+        android:id="@+id/registerLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/emailAInput"
+            android:id="@+id/emailRInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -32,7 +32,7 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/passwordAInput"
+            android:id="@+id/passwordRInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -45,13 +45,13 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/signinABtn"
+            android:id="@+id/signupRBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:text="Sign In" />
+            android:text="Sign Up" />
 
         <Space
             android:layout_width="match_parent"
@@ -65,11 +65,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/alternativeAText"
+                android:id="@+id/alternativeRText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Do you need an account?" />
+                android:text="Already have an account?" />
 
             <Space
                 android:layout_width="8dp"
@@ -77,11 +77,11 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/signupABtn"
+                android:id="@+id/signinRBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sign Up"
+                android:text="Sign In"
                 android:textColor="@color/design_default_color_primary" />
 
         </LinearLayout>

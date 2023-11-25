@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,56 +18,44 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class AuthActivity extends AppCompatActivity {
-    String email;
-
-    EditText emailAInput, passwordAInput;
-    Button signinABtn;
-    TextView signupABtn;
-
-    SharedPreferences prefs;
+public class RegisterActivity extends AppCompatActivity {
+    EditText emailRInput, passwordRInput;
+    Button signupRBtn;
+    TextView signinRBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth);
+        setContentView(R.layout.activity_register);
 
-        emailAInput = findViewById(R.id.emailAInput);
-        passwordAInput = findViewById(R.id.passwordAInput);
-        signupABtn = findViewById(R.id.signupABtn);
-        signinABtn = findViewById(R.id.signinABtn);
+        emailRInput = findViewById(R.id.emailRInput);
+        passwordRInput = findViewById(R.id.passwordRInput);
+        signinRBtn = findViewById(R.id.signinRBtn);
+        signupRBtn = findViewById(R.id.signupRBtn);
 
-        prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-
-        email = prefs.getString("email", null);
-
-        sessionVerify();
-
-        signinABtn.setOnClickListener(new View.OnClickListener() {
+        signupRBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                signUp();
             }
         });
 
-        signupABtn.setOnClickListener(new View.OnClickListener() {
+        signinRBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent singupIntent = new Intent(AuthActivity.this, RegisterActivity.class);
-                startActivity(singupIntent);
+                Intent singinIntent = new Intent(RegisterActivity.this, AuthActivity.class);
+                startActivity(singinIntent);
             }
         });
-
     }
 
-
     private void cleaner(){
-        emailAInput.setText("");
-        passwordAInput.setText("");
+        emailRInput.setText("");
+        passwordRInput.setText("");
     }
 
     private boolean verifyData(){
-        if (emailAInput.getText().toString().isEmpty() || passwordAInput.getText().toString().isEmpty()){
+        if (emailRInput.getText().toString().isEmpty() || passwordRInput.getText().toString().isEmpty()){
             return false;
         } else {
             return true;
@@ -77,7 +63,7 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     private void intentGenerator(String email){
-        Intent homeIntent = new Intent(AuthActivity.this, HomeActivity.class);
+        Intent homeIntent = new Intent(RegisterActivity.this, HomeActivity.class);
         homeIntent.putExtra("email", email);
         startActivity(homeIntent);
     }
@@ -96,32 +82,22 @@ public class AuthActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void sessionVerify(){
-        if (email != null) {
-            intentGenerator(email);
-        }
-    }
-
-    private void signIn(){
+    private void signUp(){
         if (verifyData()){
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAInput.getText().toString(),
-                    passwordAInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailRInput.getText().toString(),
+                    passwordRInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        intentGenerator(emailAInput.getText().toString());
+                        intentGenerator(emailRInput.getText().toString());
                     } else {
-                        alertBuilder("Sign In Error", "Error to sign in");
+                        alertBuilder("Create User Error", "Error creating user");
                     }
                 }
             });
 
         } else {
-            Toast.makeText(this, "Please enter al the data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter all the data", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
-
 }
