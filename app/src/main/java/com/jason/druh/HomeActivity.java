@@ -31,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     List<Movie> movies;
     MovieAdapter movieAdapter;
 
-    ImageButton searchHBtn,logoutHBtn;
+    ImageButton searchHBtn, cinemaHBtn, logoutHBtn;
     RecyclerView moviesHRV;
 
     Bundle bundle;
@@ -45,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         logoutHBtn = findViewById(R.id.logoutHBtn);
+        cinemaHBtn = findViewById(R.id.cinemaHBtn);
         searchHBtn = findViewById(R.id.searchHBtn);
         moviesHRV = findViewById(R.id.moviesHRV);
 
@@ -72,6 +73,14 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent searchIntent = new Intent(HomeActivity.this, SearchActivity.class);
                 startActivity(searchIntent);
+            }
+        });
+
+        cinemaHBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cinemasIntent = new Intent(HomeActivity.this, CinemasActivity.class);
+                startActivity(cinemasIntent);
             }
         });
 
