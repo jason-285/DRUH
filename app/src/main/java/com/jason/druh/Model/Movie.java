@@ -1,7 +1,58 @@
 package com.jason.druh.Model;
 
-public class Movie{
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Movie implements Parcelable {
     private String title, category, time, ages, languages, description, location, number, website, poster, header;
+
+    protected Movie(Parcel in) {
+        title = in.readString();
+        category = in.readString();
+        time = in.readString();
+        ages = in.readString();
+        languages = in.readString();
+        description = in.readString();
+        location = in.readString();
+        number = in.readString();
+        website = in.readString();
+        poster = in.readString();
+        header = in.readString();
+    }
+
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(category);
+        dest.writeString(time);
+        dest.writeString(ages);
+        dest.writeString(languages);
+        dest.writeString(description);
+        dest.writeString(location);
+        dest.writeString(number);
+        dest.writeString(website);
+        dest.writeString(poster);
+        dest.writeString(header);
+    }
 
     public String getTitle() {
         return title;
@@ -90,4 +141,5 @@ public class Movie{
     public void setHeader(String header) {
         this.header = header;
     }
+
 }

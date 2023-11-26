@@ -19,6 +19,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     private List<Movie> movies;
     private Context context;
 
+    private OnItemClickListener onItemClickListener;
+
     public MovieAdapter(List<Movie> movies, Context context) {
         this.movies = movies;
         this.context = context;
@@ -46,6 +48,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView poster;
         private TextView title, category, time, ages, languages;
@@ -59,6 +69,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             time = itemView.findViewById(R.id.timeTV);
             ages = itemView.findViewById(R.id.agesTV);
             languages = itemView.findViewById(R.id.languagesTV);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onItemClickListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            onItemClickListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

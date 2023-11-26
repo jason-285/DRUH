@@ -12,10 +12,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.jason.druh.Model.Movie;
 
 public class MovieActivity extends AppCompatActivity {
+    Movie movie;
+
     ImageButton backDBtn, logoutDBtn;
     ImageView posterDImgV;
     TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV, locationTitleDTxtV;
@@ -23,6 +27,8 @@ public class MovieActivity extends AppCompatActivity {
     Button messageDBtn, callDBtn, pageDBtn;
 
     SharedPreferences.Editor prefs;
+    Bundle movieBundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,8 @@ public class MovieActivity extends AppCompatActivity {
 
         prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit();
 
+        autofill();
+
         backDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,5 +71,18 @@ public class MovieActivity extends AppCompatActivity {
                 startActivity(authIntent);
             }
         });
+    }
+
+    public void autofill(){
+        movieBundle = this.getIntent().getExtras();
+        movie = movieBundle.getParcelable("Movie");
+        Glide.with(this).load(movie.getHeader()).into(posterDImgV);
+        titleDTxtV.setText(movie.getTitle());
+        categoryDTxtV.setText(movie.getCategory());
+        timeDTxtV.setText(movie.getTime());
+        agesDTxtV.setText(movie.getAges());
+        languagesDTxtV.setText(movie.getLanguages());
+        descriptionDTxtV.setText(movie.getDescription());
+        locationTitleDTxtV.setText("Cinema Location");
     }
 }

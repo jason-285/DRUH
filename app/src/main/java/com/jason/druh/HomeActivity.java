@@ -1,5 +1,6 @@
 package com.jason.druh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -80,6 +82,19 @@ public class HomeActivity extends AppCompatActivity {
         prefs.apply();
     }
 
+    public void clickSetUp(){
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Movie movie = movies.get(position);
+
+                Intent movieIntent = new Intent(HomeActivity.this, MovieActivity.class);
+                movieIntent.putExtra("Movie", movie);
+                startActivity(movieIntent);
+            }
+        });
+    }
+
     public void showMovies(){
         Call<List<Movie>> call = ApiClient.getClient().create(ApiMovie.class).getMovies();
         call.enqueue(new Callback<List<Movie>>() {
@@ -88,6 +103,7 @@ public class HomeActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     movies = response.body();
                     movieAdapter = new MovieAdapter(movies, getApplicationContext());
+                    clickSetUp();
                     moviesHRV.setAdapter(movieAdapter);
                 }
             }
