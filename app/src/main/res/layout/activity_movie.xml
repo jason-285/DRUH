@@ -44,6 +44,13 @@
                     android:src="@android:drawable/btn_star" />
 
                 <ImageButton
+                    android:id="@+id/searchDBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@android:drawable/btn_star" />
+
+                <ImageButton
                     android:id="@+id/logoutDBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

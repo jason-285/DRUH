@@ -24,7 +24,7 @@ public class MovieActivity extends AppCompatActivity {
     Movie movie;
     String number, website;
 
-    ImageButton backDBtn, logoutDBtn;
+    ImageButton backDBtn, searchDBtn, logoutDBtn;
     ImageView posterDImgV;
     TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV;
     Button messageDBtn, callDBtn, pageDBtn;
@@ -39,6 +39,7 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie);
 
         backDBtn = findViewById(R.id.backDBtn);
+        searchDBtn = findViewById(R.id.searchDBtn);
         logoutDBtn = findViewById(R.id.logoutDBtn);
         posterDImgV = findViewById(R.id.posterDImgV);
         titleDTxtV = findViewById(R.id.titleDTxtV);
@@ -59,6 +60,14 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        searchDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchIntent = new Intent(MovieActivity.this, SearchActivity.class);
+                startActivity(searchIntent);
             }
         });
 

@@ -57,17 +57,6 @@ public class HomeActivity extends AppCompatActivity {
         autoAuth();
         showMovies();
 
-        logoutHBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prefs.clear();
-                prefs.apply();
-                FirebaseAuth.getInstance().signOut();
-                Intent authIntent = new Intent(HomeActivity.this, AuthActivity.class);
-                startActivity(authIntent);
-            }
-        });
-
         searchHBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +70,17 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent cinemasIntent = new Intent(HomeActivity.this, CinemasActivity.class);
                 startActivity(cinemasIntent);
+            }
+        });
+
+        logoutHBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prefs.clear();
+                prefs.apply();
+                FirebaseAuth.getInstance().signOut();
+                Intent authIntent = new Intent(HomeActivity.this, AuthActivity.class);
+                startActivity(authIntent);
             }
         });
 

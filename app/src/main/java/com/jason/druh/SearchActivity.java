@@ -33,7 +33,7 @@ public class SearchActivity extends AppCompatActivity {
     MovieAdapter movieAdapter;
 
 
-    ImageButton homeSBtn,logoutSBtn,searchSBtn;
+    ImageButton backSBtn, cinemaSBtn, logoutSBtn,searchSBtn;
     EditText searchInput;
     Space titleSMar;
     TextView titleSTxtV;
@@ -46,8 +46,9 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        backSBtn = findViewById(R.id.backSBtn);
+        cinemaSBtn = findViewById(R.id.cinemaSBtn);
         logoutSBtn = findViewById(R.id.logoutSBtn);
-        homeSBtn = findViewById(R.id.homeSBtn);
         searchSBtn = findViewById(R.id.searchSBtn);
         searchInput = findViewById(R.id.searchInput);
         titleSMar = findViewById(R.id.titleSMar);
@@ -59,10 +60,18 @@ public class SearchActivity extends AppCompatActivity {
 
         showMovies();
 
-        homeSBtn.setOnClickListener(new View.OnClickListener() {
+        backSBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        cinemaSBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cinemaIntent = new Intent(SearchActivity.this, CinemasActivity.class);
+                startActivity(cinemaIntent);
             }
         });
 
@@ -103,6 +112,19 @@ public class SearchActivity extends AppCompatActivity {
         return newList;
     }
 
+    public void clickSetUp(){
+        movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Movie movie = foundMovies.get(position);
+
+                Intent movieIntent = new Intent(SearchActivity.this, MovieActivity.class);
+                movieIntent.putExtra("Movie", movie);
+                startActivity(movieIntent);
+            }
+        });
+    }
+
     public void showMovies(){
         Call<List<Movie>> call = ApiClient.getClient().create(ApiMovie.class).getMovies();
         call.enqueue(new Callback<List<Movie>>() {
@@ -117,6 +139,7 @@ public class SearchActivity extends AppCompatActivity {
                     }
 
                     movieAdapter = new MovieAdapter(foundMovies, getApplicationContext());
+                    clickSetUp();
                     moviesSRV.setAdapter(movieAdapter);
                 }
             }

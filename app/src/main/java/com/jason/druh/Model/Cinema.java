@@ -1,8 +1,7 @@
 package com.jason.druh.Model;
 
 public class Cinema {
-    private String name, locations, web, logo;
-    private int phone;
+    private String name, locations, phone, web, logo;
 
     public String getName() {
         return name;
@@ -36,11 +35,11 @@ public class Cinema {
         this.logo = logo;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }
