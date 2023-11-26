@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.MapView;
@@ -19,11 +22,11 @@ import com.jason.druh.Model.Movie;
 
 public class MovieActivity extends AppCompatActivity {
     Movie movie;
+    String number, website;
 
     ImageButton backDBtn, logoutDBtn;
     ImageView posterDImgV;
-    TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV, locationTitleDTxtV;
-    MapView locationDMapV;
+    TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV;
     Button messageDBtn, callDBtn, pageDBtn;
 
     SharedPreferences.Editor prefs;
@@ -44,8 +47,6 @@ public class MovieActivity extends AppCompatActivity {
         agesDTxtV = findViewById(R.id.agesDTxtV);
         languagesDTxtV = findViewById(R.id.languagesDTxtV);
         descriptionDTxtV = findViewById(R.id.descriptionDTxtV);
-        locationTitleDTxtV = findViewById(R.id.locationTitleDTxtV);
-        locationDMapV = findViewById(R.id.locationDMapV);
         messageDBtn = findViewById(R.id.messageDBtn);
         callDBtn = findViewById(R.id.callDBtn);
         pageDBtn = findViewById(R.id.pageDBtn);
@@ -69,6 +70,34 @@ public class MovieActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Intent authIntent = new Intent(MovieActivity.this, AuthActivity.class);
                 startActivity(authIntent);
+
+            }
+        });
+
+        messageDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SmsManager sms = SmsManager.getDefault();
+                sms.sendTextMessage(number,null,"Hi, I wanna buy tickets for: "+movie.getTitle()+"!!!", null, null);
+
+                Toast.makeText(getApplicationContext(),"Message sended succesfully",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        callDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int phone = Integer.parseInt(number);
+                Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel: "+phone));
+                startActivity(callIntent);
+            }
+        });
+
+        pageDBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getWebsite()));
+                startActivity(intent);
             }
         });
     }
@@ -83,6 +112,7 @@ public class MovieActivity extends AppCompatActivity {
         agesDTxtV.setText(movie.getAges());
         languagesDTxtV.setText(movie.getLanguages());
         descriptionDTxtV.setText(movie.getDescription());
-        locationTitleDTxtV.setText("Cinema Location");
+        number = movie.getNumber();
+        website = movie.getWebsite();
     }
 }

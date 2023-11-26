@@ -111,17 +111,6 @@
             android:layout_height="wrap_content"
             android:text="Description" />
 
-        <TextView
-            android:id="@+id/locationTitleDTxtV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LocationTitle" />
-
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/locationDMapV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <Button
             android:id="@+id/messageDBtn"
             android:layout_width="match_parent"
