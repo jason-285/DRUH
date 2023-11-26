@@ -17,8 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MovieActivity extends AppCompatActivity {
     ImageButton backDBtn, logoutDBtn;
-    ImageView posterDImgV, cinemaDImgV;
-    TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV, cinemaDTxtV, schedulesTitleDTxtV, schedulesDtxtV, locationTitleDTxtV;
+    ImageView posterDImgV;
+    TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV, locationTitleDTxtV;
     MapView locationDMapV;
     Button messageDBtn, callDBtn, pageDBtn;
 
@@ -32,16 +32,12 @@ public class MovieActivity extends AppCompatActivity {
         backDBtn = findViewById(R.id.backDBtn);
         logoutDBtn = findViewById(R.id.logoutDBtn);
         posterDImgV = findViewById(R.id.posterDImgV);
-        cinemaDImgV = findViewById(R.id.cinemaDImgV);
         titleDTxtV = findViewById(R.id.titleDTxtV);
         categoryDTxtV = findViewById(R.id.categoryDTxtV);
         timeDTxtV = findViewById(R.id.timeDTxtV);
         agesDTxtV = findViewById(R.id.agesDTxtV);
         languagesDTxtV = findViewById(R.id.languagesDTxtV);
         descriptionDTxtV = findViewById(R.id.descriptionDTxtV);
-        cinemaDTxtV = findViewById(R.id.cinemaDTxtV);
-        schedulesTitleDTxtV = findViewById(R.id.schedulesTitleDTxtV);
-        schedulesDtxtV = findViewById(R.id.schedulesDtxtV);
         locationTitleDTxtV = findViewById(R.id.locationTitleDTxtV);
         locationDMapV = findViewById(R.id.locationDMapV);
         messageDBtn = findViewById(R.id.messageDBtn);

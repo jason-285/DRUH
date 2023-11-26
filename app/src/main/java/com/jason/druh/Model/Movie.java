@@ -1,9 +1,7 @@
 package com.jason.druh.Model;
 
-public class Movie {
-    private String title, date, time, gender, poster;
-
-
+public class Movie{
+    private String title, category, time, ages, languages, description, location, number, website, poster, header;
 
     public String getTitle() {
         return title;
@@ -13,12 +11,12 @@ public class Movie {
         this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getTime() {
@@ -29,12 +27,52 @@ public class Movie {
         this.time = time;
     }
 
-    public String getGender() {
-        return gender;
+    public String getAges() {
+        return ages;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setAges(String ages) {
+        this.ages = ages;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getPoster() {
@@ -43,5 +81,13 @@ public class Movie {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 }
