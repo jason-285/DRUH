@@ -24,7 +24,7 @@
                 android:id="@+id/posterIV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                     android:layout_marginLeft="10dp"
                     android:gravity="left"
                     android:text="TITULO"
-                    android:textColor="@color/white"
+                    android:textColor="@color/fonts_icons_primary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -54,7 +54,7 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:text="Category"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/fonts_icons_primary" />
 
             </LinearLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="3h 00min"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/fonts_icons_primary" />
 
                 <Space
                     android:layout_width="5dp"
@@ -89,7 +89,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="18+"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/fonts_icons_primary" />
 
                 <Space
                     android:layout_width="5dp"
@@ -103,7 +103,7 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="English, Spanish"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/fonts_icons_primary" />
 
                 <Space
                     android:layout_width="150dp"

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="background">#132742</color>
+    <color name="cards">#1D3050</color>
+    <color name="fonts_icons_secundary">#606F8E</color>
+    <color name="fonts_icons_primary">#E7F4FD</color>
+    <color name="buttons_color">#778DD9</color>
+    <color name="highlighter">#D9CC66</color>
 </resources>
