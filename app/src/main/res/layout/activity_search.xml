@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".SearchActivity">
 
     <LinearLayout
@@ -14,29 +15,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:background="@color/cards"
+            android:gravity="clip_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/headerSLogo"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+                android:foregroundGravity="left"
+                android:clickable="true"
+                app:srcCompat="@drawable/heade_logo"/>
+
+            <Space
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_gravity="right"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -44,61 +54,92 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/back" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/cinemaSBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/cinemas" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/logoutSBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/logout" />
             </LinearLayout>
 
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="11dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/input_style">
 
             <EditText
                 android:id="@+id/searchInput"
-                android:layout_width="350dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/background"
                 android:ems="10"
+                android:fontFamily="@font/nunito_bold"
+                android:hint="Search"
                 android:inputType="text"
-                android:hint="Movie Name" />
+                android:textColor="@color/fonts_icons_primary"
+                android:textColorHint="@color/fonts_icons_secundary"
+                android:textSize="20sp" />
+
+            <Space
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
             <ImageButton
                 android:id="@+id/searchSBtn"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/btn_star" />
+                android:background="@color/background"
+                android:src="@drawable/search" />
         </LinearLayout>
 
         <Space
             android:id="@+id/titleSMar"
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/titleSTxtV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="Billboard"
-            android:textSize="24sp"
+            android:layout_marginHorizontal="20dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="All Movies"
+            android:textColor="@color/fonts_icons_primary"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
         <Space
@@ -108,6 +149,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/moviesSRV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

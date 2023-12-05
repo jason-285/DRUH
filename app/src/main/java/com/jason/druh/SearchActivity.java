@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,6 @@ import retrofit2.Response;
 public class SearchActivity extends AppCompatActivity {
     List<Movie> foundMovies;
     MovieAdapter movieAdapter;
-
 
     ImageButton backSBtn, cinemaSBtn, logoutSBtn,searchSBtn;
     EditText searchInput;
@@ -107,7 +107,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
 
-        setSTitle('"'+searchInput.getText().toString()+'"');
+        setSTitle("Results for \"" +searchInput.getText().toString()+"\"");
 
         return newList;
     }

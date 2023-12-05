@@ -37,9 +37,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(movies.get(position).getTitle());
         holder.category.setText(movies.get(position).getCategory());
-        holder.time.setText(movies.get(position).getTime());
-        holder.ages.setText(movies.get(position).getAges());
-        holder.languages.setText(movies.get(position).getLanguages());
         Glide.with(context).load(movies.get(position).getPoster()).into(holder.poster);
     }
 
@@ -58,7 +55,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView poster;
-        private TextView title, category, time, ages, languages;
+        private TextView title, category;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,9 +63,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             poster = itemView.findViewById(R.id.posterIV);
             title = itemView.findViewById(R.id.titleTV);
             category = itemView.findViewById(R.id.categoryTV);
-            time = itemView.findViewById(R.id.timeTV);
-            ages = itemView.findViewById(R.id.agesTV);
-            languages = itemView.findViewById(R.id.languagesTV);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

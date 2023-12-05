@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -14,29 +15,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/cards"
+            android:gravity="clip_vertical"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:id="@+id/headerHLogo"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+                android:foregroundGravity="left"
+                app:srcCompat="@drawable/heade_logo" />
+
+            <Space
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="36dp"
                 android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -44,35 +54,50 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/search" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/cinemaHBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/cinemas" />
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
                 <ImageButton
                     android:id="@+id/logoutHBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@android:drawable/btn_star" />
+                    android:background="@color/cards"
+                    android:src="@drawable/logout" />
             </LinearLayout>
         </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="30dp" />
 
         <TextView
             android:id="@+id/titleHTxtV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/nunito_bold"
             android:text="Billboard"
-            android:textSize="24sp"
+            android:textColor="@color/fonts_icons_primary"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
         <Space
@@ -82,7 +107,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/moviesHRV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

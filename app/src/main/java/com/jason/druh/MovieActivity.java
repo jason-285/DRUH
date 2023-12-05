@@ -24,10 +24,9 @@ public class MovieActivity extends AppCompatActivity {
     Movie movie;
     String number, website;
 
-    ImageButton backDBtn, searchDBtn, logoutDBtn;
+    ImageButton backDBtn, searchDBtn, logoutDBtn, messageDBtn, callDBtn, pageDBtn;
     ImageView posterDImgV;
     TextView titleDTxtV, categoryDTxtV, timeDTxtV, agesDTxtV, languagesDTxtV, descriptionDTxtV;
-    Button messageDBtn, callDBtn, pageDBtn;
 
     SharedPreferences.Editor prefs;
     Bundle movieBundle;
