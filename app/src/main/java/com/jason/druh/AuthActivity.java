@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------------------------------
+
+/*IMPORTS*/
+
 package com.jason.druh;
 
 import androidx.annotation.NonNull;
@@ -20,7 +24,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+//--------------------------------------------------------------------------------------------------
+
+/*CLASS*/
+
 public class AuthActivity extends AppCompatActivity {
+
+    //----------------------------------------------------------------------------------------------
+
+    /*VARS DEFINITION*/
+
     String email;
 
     EditText emailAInput, passwordAInput;
@@ -29,58 +42,82 @@ public class AuthActivity extends AppCompatActivity {
 
     SharedPreferences prefs;
 
+    //----------------------------------------------------------------------------------------------
+
+    /*ONCREATE METHOD*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+
+        //------------------------------------------------------------------------------------------
+
+        /*VARS INIT*/
 
         emailAInput = findViewById(R.id.emailAInput);
         passwordAInput = findViewById(R.id.passwordAInput);
         signupABtn = findViewById(R.id.signupABtn);
         signinABtn = findViewById(R.id.signinABtn);
 
-        prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        //------------------------------------------------------------------------------------------
+
+        /*PRE-CHARGE METHODS*/
+
+        prefs = getSharedPreferences(getString(R.string.prefs_file),
+                Context.MODE_PRIVATE);
 
         email = prefs.getString("email", null);
 
         sessionVerify();
+
+        //------------------------------------------------------------------------------------------
+
+        /*LISTENER METHODS*/
 
         signinABtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
             }
-        });
+        }); // END LISTENER
 
         signupABtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent singupIntent = new Intent(AuthActivity.this, RegisterActivity.class);
+                Intent singupIntent = new Intent(AuthActivity.this,
+                        RegisterActivity.class);
                 startActivity(singupIntent);
             }
-        });
+        }); // END LISTENER
 
-    }
+        //------------------------------------------------------------------------------------------
 
+    } // END ONCREATE
+
+    //----------------------------------------------------------------------------------------------
+
+    /*HELPERS METHODS*/
 
     private void cleaner(){
         emailAInput.setText("");
         passwordAInput.setText("");
-    }
+    } // END CLEANER
 
     private boolean verifyData(){
-        if (emailAInput.getText().toString().isEmpty() || passwordAInput.getText().toString().isEmpty()){
+        if (emailAInput.getText().toString().isEmpty() || passwordAInput.getText().toString()
+                .isEmpty()){
             return false;
         } else {
             return true;
         }
-    }
+    } // END VERIFYDATA
 
     private void intentGenerator(String email){
         Intent homeIntent = new Intent(AuthActivity.this, HomeActivity.class);
         homeIntent.putExtra("email", email);
         startActivity(homeIntent);
-    }
+    } // END INTENTGENERATOR
 
     private void alertBuilder(String title, String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -94,18 +131,23 @@ public class AuthActivity extends AppCompatActivity {
         });
 
         builder.show();
-    }
+    } // END ALERTBUILDER
+
+    //----------------------------------------------------------------------------------------------
+
+    /*SINGIN METHODS*/
 
     private void sessionVerify(){
         if (email != null) {
             intentGenerator(email);
         }
-    }
+    } // END SESSIONVERIFY
 
     private void signIn(){
         if (verifyData()){
             FirebaseAuth.getInstance().signInWithEmailAndPassword(emailAInput.getText().toString(),
-                    passwordAInput.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    passwordAInput.getText().toString()).addOnCompleteListener(
+                            new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
@@ -119,9 +161,10 @@ public class AuthActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Please enter al the data", Toast.LENGTH_SHORT).show();
         }
-    }
+    } // END SIGNIN
 
+    //----------------------------------------------------------------------------------------------
 
+} // END CLASS
 
-
-}
+//--------------------------------------------------------------------------------------------------

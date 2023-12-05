@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------------------------------
+
+/*IMPORTS*/
+
 package com.jason.druh;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,18 +13,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jason.druh.Model.Movie;
 
+//--------------------------------------------------------------------------------------------------
+
+/*CLASS*/
+
 public class MovieActivity extends AppCompatActivity {
+
+    //----------------------------------------------------------------------------------------------
+
+    /*VARS DEFINITION*/
+
     Movie movie;
     String number, website;
 
@@ -31,11 +42,18 @@ public class MovieActivity extends AppCompatActivity {
     SharedPreferences.Editor prefs;
     Bundle movieBundle;
 
+    //----------------------------------------------------------------------------------------------
+
+    /*ONCREATE METHOD*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        //------------------------------------------------------------------------------------------
+
+        /*VARS INIT*/
 
         backDBtn = findViewById(R.id.backDBtn);
         searchDBtn = findViewById(R.id.searchDBtn);
@@ -51,24 +69,34 @@ public class MovieActivity extends AppCompatActivity {
         callDBtn = findViewById(R.id.callDBtn);
         pageDBtn = findViewById(R.id.pageDBtn);
 
-        prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit();
+        //------------------------------------------------------------------------------------------
+
+        /*PRE-CHARGE METHODS*/
+
+        prefs = getSharedPreferences(getString(R.string.prefs_file),
+                Context.MODE_PRIVATE).edit();
 
         autofill();
+
+        //------------------------------------------------------------------------------------------
+
+        /*LISTENER METHODS*/
 
         backDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        }); // END LISTENER
 
         searchDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent searchIntent = new Intent(MovieActivity.this, SearchActivity.class);
+                Intent searchIntent = new Intent(MovieActivity.this,
+                        SearchActivity.class);
                 startActivity(searchIntent);
             }
-        });
+        }); // END LISTENER
 
         logoutDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,17 +108,19 @@ public class MovieActivity extends AppCompatActivity {
                 startActivity(authIntent);
 
             }
-        });
+        }); // END LISTENER
 
         messageDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(number,null,"Hi, I wanna buy tickets for: "+movie.getTitle()+"!!!", null, null);
+                sms.sendTextMessage(number,null,"Hi, I wanna buy tickets for: "
+                        +movie.getTitle()+"!!!", null, null);
 
-                Toast.makeText(getApplicationContext(),"Message sended succesfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Message sended succesfully",
+                        Toast.LENGTH_SHORT).show();
             }
-        });
+        }); // END LISTENER
 
         callDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +129,7 @@ public class MovieActivity extends AppCompatActivity {
                 Intent callIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel: "+phone));
                 startActivity(callIntent);
             }
-        });
+        }); // END LISTENER
 
         pageDBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,8 +137,15 @@ public class MovieActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(movie.getWebsite()));
                 startActivity(intent);
             }
-        });
-    }
+        }); // END LISTENER
+
+        //------------------------------------------------------------------------------------------
+
+    } // END ONCREATE
+
+    //----------------------------------------------------------------------------------------------
+
+    /*HELPERS METHODS*/
 
     public void autofill(){
         movieBundle = this.getIntent().getExtras();
@@ -122,5 +159,10 @@ public class MovieActivity extends AppCompatActivity {
         descriptionDTxtV.setText(movie.getDescription());
         number = movie.getNumber();
         website = movie.getWebsite();
-    }
-}
+    } // END AUTOFILL
+
+    //----------------------------------------------------------------------------------------------
+
+} // END CLASS
+
+//--------------------------------------------------------------------------------------------------

@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------------------------------
+
+/*IMPORTS*/
+
 package com.jason.druh.Model;
 
 import android.os.Parcel;
@@ -5,8 +9,22 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+//--------------------------------------------------------------------------------------------------
+
+/*CLASS*/
+
 public class Movie implements Parcelable {
-    private String title, category, time, ages, languages, description, location, number, website, poster, header;
+
+    //----------------------------------------------------------------------------------------------
+
+    /*VARS DEFINITION*/
+
+    private String title, category, time, ages, languages, description, location, number, website,
+            poster, header;
+
+    //----------------------------------------------------------------------------------------------
+
+    /*PARCELEABLE METHODS*/
 
     protected Movie(Parcel in) {
         title = in.readString();
@@ -20,7 +38,7 @@ public class Movie implements Parcelable {
         website = in.readString();
         poster = in.readString();
         header = in.readString();
-    }
+    } // END PARCELABLE CONSTRUCTOR
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
@@ -32,12 +50,12 @@ public class Movie implements Parcelable {
         public Movie[] newArray(int size) {
             return new Movie[size];
         }
-    };
+    }; // END CREATOR
 
     @Override
     public int describeContents() {
         return 0;
-    }
+    } // END DESCRIBE CONTENTS
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
@@ -52,7 +70,11 @@ public class Movie implements Parcelable {
         dest.writeString(website);
         dest.writeString(poster);
         dest.writeString(header);
-    }
+    } // END WRITE TO PARCEL
+
+    //----------------------------------------------------------------------------------------------
+
+    /*SET & GET METHODS*/
 
     public String getTitle() {
         return title;
@@ -142,4 +164,8 @@ public class Movie implements Parcelable {
         this.header = header;
     }
 
-}
+    //----------------------------------------------------------------------------------------------
+
+} // END CLASS
+
+//--------------------------------------------------------------------------------------------------

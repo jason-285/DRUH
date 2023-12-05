@@ -1,3 +1,7 @@
+//--------------------------------------------------------------------------------------------------
+
+/*IMPORTS*/
+
 package com.jason.druh;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +15,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +32,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+//--------------------------------------------------------------------------------------------------
+
+/*CLASS*/
+
 public class SearchActivity extends AppCompatActivity {
+
+    //----------------------------------------------------------------------------------------------
+
+    /*VARS DEFINITION*/
+
     List<Movie> foundMovies;
     MovieAdapter movieAdapter;
 
@@ -41,10 +53,18 @@ public class SearchActivity extends AppCompatActivity {
 
     SharedPreferences.Editor prefs;
 
+    //----------------------------------------------------------------------------------------------
+
+    /*ONCREATE METHOD*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        //------------------------------------------------------------------------------------------
+
+        /*VARS INIT*/
 
         backSBtn = findViewById(R.id.backSBtn);
         cinemaSBtn = findViewById(R.id.cinemaSBtn);
@@ -55,25 +75,35 @@ public class SearchActivity extends AppCompatActivity {
         titleSTxtV = findViewById(R.id.titleSTxtV);
         moviesSRV = findViewById(R.id.moviesSRV);
 
-        prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit();
+        //------------------------------------------------------------------------------------------
+
+        /*PRE-CHARGE METHODS*/
+
+        prefs = getSharedPreferences(getString(R.string.prefs_file),
+                Context.MODE_PRIVATE).edit();
         moviesSRV.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
         showMovies();
+
+        //------------------------------------------------------------------------------------------
+
+        /*LISTENER METHODS*/
 
         backSBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        }); // END LISTENER
 
         cinemaSBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cinemaIntent = new Intent(SearchActivity.this, CinemasActivity.class);
+                Intent cinemaIntent = new Intent(SearchActivity.this,
+                        CinemasActivity.class);
                 startActivity(cinemaIntent);
             }
-        });
+        }); // END LISTENER
 
         logoutSBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,22 +111,30 @@ public class SearchActivity extends AppCompatActivity {
                 prefs.clear();
                 prefs.apply();
                 FirebaseAuth.getInstance().signOut();
-                Intent authIntent = new Intent(SearchActivity.this, AuthActivity.class);
+                Intent authIntent = new Intent(SearchActivity.this,
+                        AuthActivity.class);
                 startActivity(authIntent);
             }
-        });
+        }); // END LISTENER
 
         searchSBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showMovies();
             }
-        });
-    }
+        }); // END LISTENER
+
+        //------------------------------------------------------------------------------------------
+
+    } // END ONCREATE
+
+    //----------------------------------------------------------------------------------------------
+
+    /*HELPERS METHODS*/
 
     public void setSTitle(String title){
         titleSTxtV.setText(title);
-    }
+    } // END SETTITLE
 
     public List<Movie> listPurge(List<Movie> list){
         List<Movie> newList = new ArrayList<Movie>();
@@ -110,7 +148,11 @@ public class SearchActivity extends AppCompatActivity {
         setSTitle("Results for \"" +searchInput.getText().toString()+"\"");
 
         return newList;
-    }
+    } // END LISTPURGE
+
+    //----------------------------------------------------------------------------------------------
+
+    /*SETTINGS METHODS*/
 
     public void clickSetUp(){
         movieAdapter.setOnItemClickListener(new MovieAdapter.OnItemClickListener() {
@@ -118,12 +160,17 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(int position) {
                 Movie movie = foundMovies.get(position);
 
-                Intent movieIntent = new Intent(SearchActivity.this, MovieActivity.class);
+                Intent movieIntent = new Intent(SearchActivity.this,
+                        MovieActivity.class);
                 movieIntent.putExtra("Movie", movie);
                 startActivity(movieIntent);
             }
         });
-    }
+    } // END CLICKSETUP
+
+    //----------------------------------------------------------------------------------------------
+
+    /*API EXTRACTION METHODS*/
 
     public void showMovies(){
         Call<List<Movie>> call = ApiClient.getClient().create(ApiMovie.class).getMovies();
@@ -147,8 +194,14 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 setSTitle("Searching Error");
-                Toast.makeText(SearchActivity.this, "404 Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, "404 Error", Toast.LENGTH_SHORT)
+                        .show();
             }
         });
-    }
-}
+    } // END SHOWMOVIES
+
+    //----------------------------------------------------------------------------------------------
+
+} // END CLASS
+
+//--------------------------------------------------------------------------------------------------
